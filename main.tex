@@ -1,0 +1,215 @@
+%-------------------------------------
+%            Disclaimer
+ %This is a template developed from:
+ %https://www.overleaf.com/latex/templates/imperial-college-individual-project-template/bhgyjxmsvwqj
+ % comes from License Creative Commons CC BY 4.0
+ % The template at ESPOCH should be used for academic or research purpose. For any additional detail follow the link shared above.
+
+ % Modified by xavysp with the aim of academic usage at Escuela Superior Politécnica de Chimborazo (ESPOCh)---Polytechnic School of Chimborazo in English at Morona-Santiago Ecuador. 
+% ----------------------------------
+
+\documentclass[12pt,a4paper, twoside]{report}
+\setcounter{secnumdepth}{4}
+\usepackage{sectsty}
+\allsectionsfont{\normalsize}
+%% Language and font encodings
+\usepackage[english, spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=2cm]{geometry}
+
+%% Useful packages
+% \usepackage[backend=biber,style=imperialharvard]{biblatex}
+\usepackage[backend=biber,style=iso-authoryear]{biblatex}
+
+% \usepackage[backend=biber,style=iso-authoryear]{biblatex}
+% style=iso-authoryear,iso-numeric,iso-alphabetic,iso-authortitle
+% mayor información sobre citas con norma ISO 690: https://biblioteca.uoc.edu/en/page/ISO-690-style/
+
+% En castellano: https://biblioguias.uam.es/citar/estilo_une
+
+
+\usepackage{afterpage}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{csquotes}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{lipsum}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage[figuresright]{rotating}% rotate pages
+% \usepackage{typearea} % help to change the page horientation
+
+% Listings (for displaying code):
+\usepackage{listings}
+\lstset{
+    frame = single, 
+    framexleftmargin=15pt
+}
+
+% Center figure captions:
+\usepackage[labelfont=bf,justification=centering]{caption}
+
+% ----------- Algorithm2e setup
+\usepackage[ruled,vlined]{algorithm2e}
+\makeatletter
+\renewcommand{\SetKwInOut}[2]{%
+  \sbox\algocf@inoutbox{\KwSty{#2}\algocf@typo:}%
+  \expandafter\ifx\csname InOutSizeDefined\endcsname\relax% if first time used
+    \newcommand\InOutSizeDefined{}\setlength{\inoutsize}{\wd\algocf@inoutbox}%
+    \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo:\hfill}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
+  \else% else keep the larger dimension
+    \ifdim\wd\algocf@inoutbox>\inoutsize%
+    \setlength{\inoutsize}{\wd\algocf@inoutbox}%
+    \sbox\algocf@inoutbox{\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo:\hfill}~}\setlength{\inoutindent}{\wd\algocf@inoutbox}%
+    \fi%
+  \fi% the dimension of the box is now defined.
+  \algocf@newcommand{#1}[1]{%
+    \ifthenelse{\boolean{algocf@inoutnumbered}}{\relax}{\everypar={\relax}}%
+%     {\let\\\algocf@newinout\hangindent=\wd\algocf@inoutbox\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo\hfill:}~##1\par}%
+    {\let\\\algocf@newinout\hangindent=\inoutindent\hangafter=1\parbox[t]{\inoutsize}{\KwSty{#2}\algocf@typo:\hfill}~##1\par}%
+    \algocf@linesnumbered% reset the numbering of the lines
+  }}%
+\makeatother
+% --------- end algorithm2e setup
+
+% \bm allows typing bold math:
+\usepackage{bm}
+
+% -------- Fancy page headers:
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead{}
+%RO,LE \MakeUppercase
+\fancyhead[RO,LE]{\MakeUppercase{\leftmark\hfill}}
+\fancyfoot[LE,RO]{\hfill\thepage\hfill}
+\setlength{\headheight}{15.6pt}
+
+% -------- Finish setting up fancy page headers
+
+
+% ---------- Setup for definitions:
+\usepackage{tipa}
+\usepackage{tcolorbox}
+\usepackage{xcolor}
+\definecolor{mdgrey}{rgb}{0.8, 0.8, 0.8}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage{lipsum}
+\newtheoremstyle{defi}
+  {\topsep}%
+  {\topsep}%
+  {\normalfont}%
+  {}%
+  {\bfseries}% 
+  {:}%
+  {.5em}%
+  {\thmname{#1}\thmnote{~(#3)}}%
+\theoremstyle{defi}
+\newmdtheoremenv{definitioni}{Definition}
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+innertopmargin=0pt,
+innerbottommargin=0pt,
+linewidth=4pt,
+linecolor=gray!40,
+innerrightmargin=0pt,
+]{definitionii}{Definition}
+\newmdtheoremenv[
+roundcorner=5pt,
+innertopmargin=0pt,
+innerbottommargin=5pt,
+linewidth=4pt,
+linecolor=gray!40,
+]{definitioniii}{Definition}
+% ---------- End setup for definitions
+
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=gray]{hyperref}
+
+\renewcommand*{\rmdefault}{bch}
+\renewcommand*{\ttdefault}{lmtt}
+\newcommand{\citationneeded}{\textcolor{red}{[citation-needed]}}
+
+\addto\captionsenglish{% Replace "english" with the language you use
+  \renewcommand{\contentsname}%
+    {ÍNDICE GENERAL}% the custom name of table of contents
+  \renewcommand{\listfigurename}{LISTA DE FIGURAS}
+    \renewcommand{\listtablename}{LISTA DE TABLAS}
+    \renewcommand{\figurename}{Figura}
+    \renewcommand{\chaptername}{CAPÍTULO}
+}
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\algorithmcfname}{Algoritmo}
+
+
+% Set chapter title
+\usepackage{titlesec, titletoc}
+
+\titleformat{\chapter}[display]
+  {\large \bfseries \centering}{\MakeUppercase{}}{0pt}{\large\MakeUppercase}
+\titlespacing*{\chapter}{-10pt}{-20pt}{25pt}
+
+\titlecontents{chapter}[0.2em]{\bigskip\bfseries}%\vspace{1cm}%
+{\contentslabel[\MakeUppercase{}]{7em}\MakeUppercase}%
+{\MakeUppercase}%numberless chapters%
+{\hfill\contentspage}[\medskip]%
+% End set chapter title
+% -------------------------
+% --------------------------
+
+\DeclareMathOperator*{\argmin}{\arg\!\min}
+\DeclareMathOperator*{\argmax}{\arg\!\max}
+
+\title{Aquí el título de la propuesta}
+
+% Uncomment if you want a subtitle:
+% \vspace{1em}\large Interim Report}
+
+\author{Nombres y apellidos}
+% Update supervisor and other title stuff in title/title.tex
+
+% Add bigger skip between paragraphs, makes reading easier:
+\setlength{\parskip}{0.5em}
+
+\bibliography{bibs/bibliography.bib}
+
+\begin{document}
+\input{title/title.tex}
+
+% \begin{abstract}
+% Your abstract goes here
+% \end{abstract}
+% 
+% \renewcommand{\abstractname}{Acknowledgements}
+% \begin{abstract}
+% Thanks mum!
+% \end{abstract}
+\pagenumbering{arabic} % starting the page numbering
+\tableofcontents
+
+% Inputs:
+% Uncomment or add folders to add your own chapters and input files.
+% agregamos los capítulos
+
+\input{informacion/informacion}
+\input{propuesta/propuesta}
+\input{plan/plan}
+% \input{anexos/anexos} % si no tiene anexos comente esta línea
+
+% agregamos las referencias bibliográficas
+% \printbibliography
+\printbibliography[title={Bibliografía}]{}
+
+\end{document}
+
+% ***** Aclaraciones *****
+
+% El presente documento fue elaborado en base a las guías académicas de integración curricular actualizadas mediante resolución 510.CP.2022 de la ESPOCH.
+
+% Para mayor información visite: https://biblioteca.espoch.edu.ec/ttitulacion.html
+
